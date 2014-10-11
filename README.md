@@ -20,19 +20,28 @@ Primero instalar el servidor PostGreSQL con PostGIS
 sudo aptitude install postgresql-9.1 postgresql-9.1-postgis postgis
 sudo su postgres
 dropdb geoelectoral
+createuser -DlPRS geoelectoral
 createdb geoelectoral -O geoelectoral
 psql -c "ALTER ROLE geoelectoral SUPERUSER"
-psql -d geoelectoral -U geoelectoral -W < dumps/geoelectoral_0.3.sql
+psql -d geoelectoral -h localhost -U geoelectoral -W < dumps/geoelectoral_0.3.sql
 psql -c "ALTER ROLE geoelectoral NOSUPERUSER"
 exit
 ```
 
 # Elecciones 2014
 
+## Elección sin resultados
+
 Para añadir la base para las elecciones de 2014 (sin resultados):
 
 ```
-sudo su postgres
-psql -d geoelectoral -U geoelectoral -W < script/upgrade_0.3_hacia_0.4.sql
-exit
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.3_hacia_0.4.sql
+```
+
+## Ingreso de resultados
+
+Para añadir los resultados, lanzar
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.4_hacia_0.5.sql
 ```
