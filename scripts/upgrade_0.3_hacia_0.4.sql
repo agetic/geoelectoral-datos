@@ -29,9 +29,9 @@ SELECT * FROM partidos WHERE sigla IN ('MAS', 'PDC', 'UD', 'MSM', 'PVB-IEP');
 
 -- creación de las elecciones
 INSERT INTO public.elecciones (id_tipo_eleccion, fecha, id_tipo_dpa, descripcion, ano) VALUES
-  (1, '2014-10-12', 1, '2014 - elecciones plurinominales', '2014'),
-  (2, '2014-10-12', 1, '2014 - elecciones uninominales', '2014'),
-  (3, '2014-10-12', 1, '2014 - elecciones especiales', '2014');  
+  (1, '2014-10-12', 1, '2014 - elecciones plurinominales (resultados parciales)', '2014'),
+  (2, '2014-10-12', 1, '2014 - elecciones uninominales (resultados parciales)', '2014'),
+  (3, '2014-10-12', 1, '2014 - elecciones especiales (resultados parciales)', '2014');  
 
 -- Verificación
 
