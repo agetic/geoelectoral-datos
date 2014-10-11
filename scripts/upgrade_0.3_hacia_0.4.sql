@@ -131,10 +131,10 @@ AS $$
       ) AS e ON (r.id_eleccion = e.id_eleccion)
       JOIN (
         SELECT id_eleccion, id_candidato, id_partido, id_tipo_partido FROM public.candidatos WHERE id_partido=_id_partido
-      ) AS c ON (c.id_eleccion=e.id_eleccion)
+      ) AS c ON (c.id_eleccion=e.id_eleccion AND r.id_candidato=c.id_candidato)
       JOIN (
         SELECT id_dpa, id_tipo_dpa FROM public.dpa WHERE id_dpa=_id_dpa
-      ) AS d ON true);
+      ) AS d ON r.id_dpa=d.id_dpa);
   
   INSERT INTO public.resultados (id_eleccion, id_candidato, id_partido, id_tipo_partido, id_dpa, id_tipo_dpa, id_tipo_resultado, resultado)
     SELECT e.id_eleccion, c.id_candidato, c.id_partido, c.id_tipo_partido, d.id_dpa, d.id_tipo_dpa, 1, _resultado
