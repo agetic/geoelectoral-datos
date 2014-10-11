@@ -121,6 +121,20 @@ AS $$
   DECLARE
     id_val int;
   BEGIN
+
+  DELETE FROM public.resultados
+    WHERE id_resultado IN (
+      SELECT id_resultado
+      FROM public.resultados AS r
+      JOIN (
+        SELECT id_eleccion FROM public.elecciones WHERE ano = 2014 AND id_tipo_eleccion=1
+      ) AS e ON (r.id_eleccion = e.id_eleccion)
+      JOIN (
+        SELECT id_eleccion, id_candidato, id_partido, id_tipo_partido FROM public.candidatos WHERE id_partido=_id_partido
+      ) AS c ON (c.id_eleccion=e.id_eleccion)
+      JOIN (
+        SELECT id_dpa, id_tipo_dpa FROM public.dpa WHERE id_dpa=_id_dpa
+      ) AS d ON true);
   
   INSERT INTO public.resultados (id_eleccion, id_candidato, id_partido, id_tipo_partido, id_dpa, id_tipo_dpa, id_tipo_resultado, resultado)
     SELECT e.id_eleccion, c.id_candidato, c.id_partido, c.id_tipo_partido, d.id_dpa, d.id_tipo_dpa, 1, _resultado
