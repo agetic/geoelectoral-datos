@@ -54,10 +54,19 @@ Para añadir las circunscripciones 2014:
 psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.5_hacia_0.6.sql
 ```
 
+## Recalculo de las tablas de jerarquia
+
+Para recalcular las tablas de jerarquia, lanzar
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.6_hacia_0.7.sql
+```
+
 ## Ingreso de resultados
 
 Para añadir los resultados, lanzar
 
 ```
-psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.6_hacia_0.7.sql
+./scripts/parsing_oep.sh
+psql -d geoelectoral -h localhost -U geoelectoral -W < /tmp/t.sql
 ```
