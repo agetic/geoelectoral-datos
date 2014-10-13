@@ -3,6 +3,18 @@
 -------------------------------------------
 
 -------------------------------------------
+-- Paso 0 - añadimos restricciones para asegurar la integridad referencial
+-------------------------------------------
+
+-- no poder borrar una elección si existen candidatos
+ALTER TABLE public.candidatos ADD CONSTRAINT fk_candidatos_elecciones_id_eleccion FOREIGN KEY (id_eleccion)
+  REFERENCES public.elecciones (id_eleccion) MATCH FULL
+  ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+-- no poder llenar dos veces la misma elección
+ALTER TABLE public.elecciones ADD CONSTRAINT elecciones_unique_fecha_descripcion UNIQUE (fecha, descripcion);
+
+-------------------------------------------
 -- Paso 1 - creación de los partidos
 -------------------------------------------
 
@@ -154,3 +166,12 @@ AS $$
   END;
 $$
 LANGUAGE plpgsql;
+
+-------------------------------------------
+-- Paso 5 - eliminación de los resultados de 12/10/2014
+-------------------------------------------
+
+-- Por si acaso, borramos los resultados de elecciones del 12/10/2014
+DELETE FROM public.resultados AS r
+  USING public.elecciones AS e
+  WHERE e.fecha = '2014-10-12' AND e.id_eleccion=r.id_eleccion;
