@@ -7,6 +7,8 @@ sql=/tmp/p.sql
 # Bolivia
 
 function dl_sql {
+rm $pdf
+rm $txt
 wget http://computo2014.oep.org.bo/nal/p${1}.PDF -O $pdf
 /usr/bin/pdftotext -raw $pdf $txt
 cat $txt | sed 's/ [0-9\.]*\%/\%/' | sed 's/MAS-IPSP%/SELECT f_insert_resultado_2014_plurinacional_votos(25, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >> $sql
