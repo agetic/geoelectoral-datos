@@ -38,10 +38,26 @@ Para añadir la base para las elecciones de 2014 (sin resultados):
 psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.3_hacia_0.4.sql
 ```
 
+## Adición de los municipios de Chúa Cocani y Huatajata
+
+Para añadir los municipios de Chúa Cocani y Huatajata:
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.4_hacia_0.5.sql
+```
+
+## Adición de las circunscripciones 2014
+
+Para añadir las circunscripciones 2014:
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.5_hacia_0.6.sql
+```
+
 ## Ingreso de resultados
 
 Para añadir los resultados, lanzar
 
 ```
-psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.4_hacia_0.5.sql
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.6_hacia_0.7.sql
 ```
