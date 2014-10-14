@@ -11,11 +11,11 @@ rm $pdf
 rm $txt
 wget http://computo2014.oep.org.bo/nal/p${1}.PDF -O $pdf
 /usr/bin/pdftotext -raw $pdf $txt
-cat $txt | sed 's/ [0-9\.]*\%/\%/' | sed 's/MAS-IPSP%/SELECT f_insert_resultado_2014_plurinacional_votos(25, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >> $sql
-cat $txt | sed 's/ [0-9\.]*\%/\%/' | sed 's/PDC%/SELECT f_insert_resultado_2014_plurinacional_votos(43, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >>  $sql
-cat $txt | sed 's/ [0-9\.]*\%/\%/' | sed 's/PVB-IEP%/SELECT f_insert_resultado_2014_plurinacional_votos(87, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >>  $sql
-cat $txt | sed 's/ [0-9\.]*\%/\%/' | sed 's/UD%/SELECT f_insert_resultado_2014_plurinacional_votos(88, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >>  $sql
-cat $txt | sed 's/ [0-9\.]*\%/\%/' | sed 's/MSM%/SELECT f_insert_resultado_2014_plurinacional_votos(86, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >>  $sql
+cat $txt | sed 's/ [0-9\.,]*\%/\%/' | sed 's/MAS-IPSP%/SELECT f_insert_resultado_2014_plurinacional_votos(25, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >> $sql
+cat $txt | sed 's/ [0-9\.,]*\%/\%/' | sed 's/PDC%/SELECT f_insert_resultado_2014_plurinacional_votos(43, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >>  $sql
+cat $txt | sed 's/ [0-9\.,]*\%/\%/' | sed 's/PVB-IEP%/SELECT f_insert_resultado_2014_plurinacional_votos(87, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >>  $sql
+cat $txt | sed 's/ [0-9\.,]*\%/\%/' | sed 's/UD%/SELECT f_insert_resultado_2014_plurinacional_votos(88, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >>  $sql
+cat $txt | sed 's/ [0-9\.,]*\%/\%/' | sed 's/MSM%/SELECT f_insert_resultado_2014_plurinacional_votos(86, '${2}', %/' | sed 's/%[0-9]*/&);/' | sed 's/%//'  | grep f_insert_resultado_2014_plurinacional_votos >>  $sql
 }
 
 rm $sql
