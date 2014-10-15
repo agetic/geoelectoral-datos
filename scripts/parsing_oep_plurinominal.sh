@@ -1,8 +1,8 @@
 #!/bin/bash
 
-pdf=/tmp/p.pdf
-txt=/tmp/p.txt
-sql=/tmp/p.sql
+pdf=/tmp/pluri.pdf
+txt=/tmp/pluri.txt
+sql=/tmp/pluri.sql
 
 # Bolivia
 

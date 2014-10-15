@@ -62,11 +62,42 @@ Para recalcular las tablas de jerarquia, lanzar
 psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.6_hacia_0.7.sql
 ```
 
-## Ingreso de resultados
+## Adición de un campo "observacion" en la tabla de resultados
 
-Para añadir los resultados, lanzar
+Para añadir un campo "observacion" en la tabla de resultados, lanzar
 
 ```
-./scripts/parsing_oep.sh
-psql -d geoelectoral -h localhost -U geoelectoral -W < /tmp/t.sql
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.7_hacia_0.8.sql
+```
+
+## Incorporación de 3 circunscripciones 2014 que faltaban
+
+Para incorporación de 3 circunscripciones 2014 que faltaban en la precedente importación, lanzar
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.8_hacia_0.9.sql
+```
+
+## Función de incorporación de datos uninominales en circunscripciones:
+
+Para añadir la función de incorporación de datos uninominales en circunscripciones:
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.9_hacia_0.10.sql
+```
+
+## Ingreso de resultados
+
+Para añadir los resultados plurinominales, lanzar
+
+```
+./scripts/parsing_oep_plurinominal.sh
+psql -d geoelectoral -h localhost -U geoelectoral -W < /tmp/pluri.sql
+```
+
+Para añadir los resultados uninominales, lanzar
+
+```
+./scripts/parsing_oep_uninominal.sh
+psql -d geoelectoral -h localhost -U geoelectoral -W < /tmp/uni.sql
 ```
