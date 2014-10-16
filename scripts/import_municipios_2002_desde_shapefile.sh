@@ -68,25 +68,25 @@ rm /tmp/$TABLA.tmp.sql
 # CONDEPA 46
 resultados_muni 12 46 1 1 "condepa" "2002-06-30"
 # UCS 67
-resultados_muni 12 67 1 1 "ucs"
+resultados_muni 12 67 1 1 "ucs" "2002-06-30"
 # NFR 11
-resultados_muni 12 11 1 1 "nfr"
+resultados_muni 12 11 1 1 "nfr" "2002-06-30"
 # MCC 9
-resultados_muni 12 9 1 1 "mcc"
+resultados_muni 12 9 1 1 "mcc" "2002-06-30"
 # ADN 26
-resultados_muni 12 26 1 1 "adn"
+resultados_muni 12 26 1 1 "adn" "2002-06-30"
 # MIR 37
-resultados_muni 12 37 1 1 "mir"
+resultados_muni 12 37 1 1 "mir" "2002-06-30"
 # MAS 25
-resultados_muni 12 25 1 1 "mas"
+resultados_muni 12 25 1 1 "mas" "2002-06-30"
 # MIP 60
-resultados_muni 12 60 1 1 "mip"
+resultados_muni 12 60 1 1 "mip" "2002-06-30"
 # MNR 78
-resultados_muni 12 78 1 1 "mnr"
+resultados_muni 12 78 1 1 "mnr" "2002-06-30"
 # PS 61
-resultados_muni 12 61 1 1 "ps"
+resultados_muni 12 61 1 1 "ps" "2002-06-30"
 # LJ 8
-resultados_muni 12 8 1 1 "lj"
+resultados_muni 12 8 1 1 "lj" "2002-06-30"
 
 # Eliminación de la tabla temporal $TABLA
 psql -U $PGUSER -d $BD_GEOELECTORAL -c "DROP TABLE IF EXISTS $TABLA;"
