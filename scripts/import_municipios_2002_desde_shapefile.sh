@@ -46,9 +46,9 @@ EOF
 #   $6 fecha de la elección
 function resultados_muni {
 psql -E -U $PGUSER -q -t -o /tmp/$TABLA.tmp.sql -d $BD_GEOELECTORAL << EOF
-  SELECT
+  SELECT DISTINCT
     '(' || $1 || ', ' ||      -- id_eleccion
-    (SELECT id_candidato FROM candidatos WHERE id_partido=$2 LIMIT 1) || ', ' || -- id_candidato
+    (SELECT id_candidato FROM candidatos WHERE id_partido=$2 AND id_eleccion=$1 LIMIT 1) || ', ' || -- id_candidato
     $2 || ', ' ||             -- id_partido
     $3 || ', ' ||             -- id_tipo_partido
     d.id_dpa  || ', ' ||      -- id_dpa
