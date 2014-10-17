@@ -65,28 +65,21 @@ rm /tmp/$TABLA.tmp.sql
 
 # reseter
 
-# CONDEPA 46
-resultados_muni 10 46 1 1 "condepa" "2009-12-06"
-# UCS 67
-resultados_muni 10 67 1 1 "ucs" "2009-12-06"
-# NFR 11
-resultados_muni 10 11 1 1 "nfr" "2009-12-06"
-# MCC 9
-resultados_muni 10 9 1 1 "mcc" "2009-12-06"
-# ADN 26
-resultados_muni 10 26 1 1 "adn" "2009-12-06"
-# MIR 37
-resultados_muni 10 37 1 1 "mir" "2009-12-06"
+# PULSO 4
+resultados_muni 10 4 1 1 "pulso" "2009-12-06"
+# MUSPA 3
+resultados_muni 10 3 1 1 "muspa" "2009-12-06"
 # MAS 25
 resultados_muni 10 25 1 1 "mas" "2009-12-06"
-# MIP 60
-resultados_muni 10 60 1 1 "mip" "2009-12-06"
-# MNR 78
-resultados_muni 10 78 1 1 "mnr" "2009-12-06"
-# PS 61
-resultados_muni 10 61 1 1 "ps" "2009-12-06"
-# LJ 8
-resultados_muni 10 8 1 1 "lj" "2009-12-06"
+# BSD 1
+resultados_muni 10 1 1 1 "bsd" "2009-12-06"
+# GENTE 2
+resultados_muni 10 2 1 1 "gente" "2009-12-06"
+# AS 18
+resultados_muni 10 18 1 1 "as" "2009-12-06"
+# UN 16
+resultados_muni 10 16 1 1 "un" "2009-12-06"
+
 
 # Eliminación de la tabla temporal $TABLA
 psql -U $PGUSER -d $BD_GEOELECTORAL -c "DROP TABLE IF EXISTS $TABLA;"
