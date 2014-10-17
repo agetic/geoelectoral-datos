@@ -34,7 +34,7 @@ psql -U $PGUSER -d $BD_GEOELECTORAL -f /tmp/$TABLA.sql
 # Proceso para aquellos DPA con duplicación de codseccion en este caso 021702
 # La verificación se realizó de manera manual con consultas sobre la tabla
 # $TABLA y se obtuvo el código duplicado
-psql -U $PGUSER -d $BD_GEOELECTORAL -c "DELETE FROM muni2002 WHERE codseccion='021702';"
+psql -U $PGUSER -d $BD_GEOELECTORAL -c "DELETE FROM $TABLA WHERE codseccion='021702';"
 #********************************************************
 
 rm /tmp/$TABLA.sql
@@ -100,7 +100,7 @@ psql -U $PGUSER -d $BD_GEOELECTORAL -c "DROP TABLE IF EXISTS $TABLA;"
 
 # Eliminando líneas blancas en el archivo y cambiando la última coma por ";"
 sed -i '/^$/d' /tmp/$TABLA.sql
-sed -i '$s/,$/;/' /tmp/muni2002.sql
+sed -i '$s/,$/;/' /tmp/$TABLA.sql
 
 echo
 echo "*** Se generó un archivo /tmp/$TABLA.sql con las sentencias SQL. ***"
