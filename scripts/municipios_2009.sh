@@ -46,7 +46,7 @@ EOF
 #   $6 fecha de la elección
 function resultados_muni {
 psql -E -U $PGUSER -q -t -o /tmp/$TABLA.tmp.sql -d $BD_GEOELECTORAL << EOF
-  SELECT
+  SELECT DISTINCT
     '(' || $1 || ', ' ||      -- id_eleccion
     (SELECT id_candidato FROM candidatos WHERE id_partido=$2 AND id_eleccion=$1 LIMIT 1) || ', ' || -- id_candidato
     $2 || ', ' ||             -- id_partido
@@ -55,7 +55,7 @@ psql -E -U $PGUSER -q -t -o /tmp/$TABLA.tmp.sql -d $BD_GEOELECTORAL << EOF
     d.id_tipo_dpa  || ', ' || -- id_tipo_dpa
     $4  || ', ' ||            -- id_tipo_resultado
     "$5"  || '),'             -- resultado
-    FROM "$TABLA" m LEFT JOIN dpa d ON m.codigo=d.codigo
+    FROM "$TABLA" m LEFT JOIN dpa d ON m.codseccion=d.codigo
     WHERE fecha_creacion_corte <= '$6' AND '$6' <= d.fecha_supresion_corte;
 EOF
 
@@ -63,35 +63,31 @@ cat /tmp/$TABLA.tmp.sql >> /tmp/$TABLA.sql
 rm /tmp/$TABLA.tmp.sql
 }
 
-# reseter
+# Datos para plurinominales 2009 con id_eleccion = 1
 
 # MAS 25
-resultados_muni 10 25 1 1 "mas" "2009-12-06"
+resultados_muni 1 25 1 1 "mas" "2009-12-06"
 # PPB-CN 27
-resultados_muni 10 27 1 1 "ppb-cn" "2009-12-06"
+resultados_muni 1 27 1 1 "convergenc" "2009-12-06"
 # UN 16
-resultados_muni 10 16 1 1 "un" "2009-12-06"
+resultados_muni 1 16 1 1 "un" "2009-12-06"
 # AS 18
-resultados_muni 10 18 1 1 "as" "2009-12-06"
+resultados_muni 1 18 1 1 "as_" "2009-12-06"
 # MUSPA 3
-resultados_muni 10 3 1 1 "muspa" "2009-12-06"
+resultados_muni 1 3 1 1 "muspa" "2009-12-06"
 # GENTE 2
-resultados_muni 10 2 1 1 "gente" "2009-12-06"
+resultados_muni 1 2 1 1 "gente" "2009-12-06"
 # PULSO 4
-resultados_muni 10 4 1 1 "pulso" "2009-12-06"
+resultados_muni 1 4 1 1 "pulso" "2009-12-06"
 # BSD 1
-resultados_muni 10 1 1 1 "bsd" "2009-12-06"
-
-
-
-
+resultados_muni 1 1 1 1 "bsd" "2009-12-06"
 
 # Eliminación de la tabla temporal $TABLA
 psql -U $PGUSER -d $BD_GEOELECTORAL -c "DROP TABLE IF EXISTS $TABLA;"
 
 # Eliminando líneas blancas en el archivo y cambiando la última coma por ";"
 sed -i '/^$/d' /tmp/$TABLA.sql
-sed -i '$s/,$/;/' /tmp/muni2009.sql
+sed -i '$s/,$/;/' /tmp/$TABLA.sql
 
 echo
 echo "*** Se generó un archivo /tmp/$TABLA.sql con las sentencias SQL. ***"

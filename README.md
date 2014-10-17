@@ -101,3 +101,11 @@ Para añadir los resultados uninominales, lanzar
 ./scripts/parsing_oep_uninominal.sh
 psql -d geoelectoral -h localhost -U geoelectoral -W < /tmp/uni.sql
 ```
+## Datos municipios 2009
+
+Para añadir los resultados del 2009 para municipios ejecutar 
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.10_hacia_0.11.sql
+
+```
