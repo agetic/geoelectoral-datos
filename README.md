@@ -101,3 +101,15 @@ Para añadir los resultados uninominales, lanzar
 ./scripts/parsing_oep_uninominal.sh
 psql -d geoelectoral -h localhost -U geoelectoral -W < /tmp/uni.sql
 ```
+
+## Plurinominales de municipios 2002
+
+Para añadir los resultados plurinominales de municipios del 2002 ejecutar
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.11_hacia_0.12.sql
+```
+
+> _Nota:_
+
+> Para obtener el archivo `scripts/upgrade_0.11_hacia_0.12.sql` se utiliza el script `scripts/import_municipios_2002_desde_shapefile.sh`. El script necesita ciertos requisitos descritos en el mismo archivo (revisar el script). El script se debe ejecutar desde la ubicación del archivo shapefile, generando al final el archivo `/tmp/muni2002.sql` el cual corresponde a `scripts/upgrade_0.11_hacia_0.12.sql`

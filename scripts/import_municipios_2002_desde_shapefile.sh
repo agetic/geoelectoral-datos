@@ -30,6 +30,13 @@ psql -U $PGUSER -d $BASE_DATOS -c "DROP TABLE IF EXISTS $TABLA;"
 psql -U $PGUSER -d $BD_GEOELECTORAL -c "DROP TABLE IF EXISTS $TABLA;"
 psql -U $PGUSER -d $BD_GEOELECTORAL -f /tmp/$TABLA.sql
 
+#********************************************************
+# Proceso para aquellos DPA con duplicación de codseccion en este caso 021702
+# La verificación se realizó de manera manual con consultas sobre la tabla
+# $TABLA y se obtuvo el código duplicado
+psql -U $PGUSER -d $BD_GEOELECTORAL -c "DELETE FROM muni2002 WHERE codseccion='021702';"
+#********************************************************
+
 rm /tmp/$TABLA.sql
 
 # Creación del encabezado para el archivo sql
@@ -55,7 +62,7 @@ psql -E -U $PGUSER -q -t -o /tmp/$TABLA.tmp.sql -d $BD_GEOELECTORAL << EOF
     d.id_tipo_dpa  || ', ' || -- id_tipo_dpa
     $4  || ', ' ||            -- id_tipo_resultado
     "$5"  || '),'             -- resultado
-    FROM "$TABLA" m LEFT JOIN dpa d ON m.codigo=d.codigo
+    FROM "$TABLA" m LEFT JOIN dpa d ON m.codseccion=d.codigo
     WHERE fecha_creacion_corte <= '$6' AND '$6' <= d.fecha_supresion_corte;
 EOF
 
@@ -63,30 +70,30 @@ cat /tmp/$TABLA.tmp.sql >> /tmp/$TABLA.sql
 rm /tmp/$TABLA.tmp.sql
 }
 
-# reseter
+# Datos para plurinominales 2002 con id_eleccion = 3
 
 # CONDEPA 46
-resultados_muni 12 46 1 1 "condepa" "2002-06-30"
+resultados_muni 3 46 1 1 "condepa" "2002-06-30"
 # UCS 67
-resultados_muni 12 67 1 1 "ucs" "2002-06-30"
+resultados_muni 3 67 1 1 "ucs" "2002-06-30"
 # NFR 11
-resultados_muni 12 11 1 1 "nfr" "2002-06-30"
+resultados_muni 3 11 1 1 "nfr" "2002-06-30"
 # MCC 9
-resultados_muni 12 9 1 1 "mcc" "2002-06-30"
+resultados_muni 3 9 1 1 "mcc" "2002-06-30"
 # ADN 26
-resultados_muni 12 26 1 1 "adn" "2002-06-30"
+resultados_muni 3 26 1 1 "adn" "2002-06-30"
 # MIR 37
-resultados_muni 12 37 1 1 "mir" "2002-06-30"
+resultados_muni 3 37 1 1 "mir" "2002-06-30"
 # MAS 25
-resultados_muni 12 25 1 1 "mas" "2002-06-30"
+resultados_muni 3 25 1 1 "mas" "2002-06-30"
 # MIP 60
-resultados_muni 12 60 1 1 "mip" "2002-06-30"
+resultados_muni 3 60 1 1 "mip" "2002-06-30"
 # MNR 78
-resultados_muni 12 78 1 1 "mnr" "2002-06-30"
+resultados_muni 3 78 1 1 "mnr" "2002-06-30"
 # PS 61
-resultados_muni 12 61 1 1 "ps" "2002-06-30"
+resultados_muni 3 61 1 1 "ps" "2002-06-30"
 # LJ 8
-resultados_muni 12 8 1 1 "lj" "2002-06-30"
+resultados_muni 3 8 1 1 "lj" "2002-06-30"
 
 # Eliminación de la tabla temporal $TABLA
 psql -U $PGUSER -d $BD_GEOELECTORAL -c "DROP TABLE IF EXISTS $TABLA;"
