@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# El scrip requiere de una base de datos temporal en éste caso "muni2002"
+# El scrip requiere de una base de datos temporal en éste caso "muni2009"
 # con soporte para postgis, también requiere del nombre de base de datos de
 # Geoelectoral en éste caso es "geoelectoral".
 
