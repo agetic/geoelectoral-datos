@@ -48,7 +48,7 @@ function resultados_muni {
 psql -E -U $PGUSER -q -t -o /tmp/$TABLA.tmp.sql -d $BD_GEOELECTORAL << EOF
   SELECT
     '(' || $1 || ', ' ||      -- id_eleccion
-    (SELECT id_candidato FROM candidatos WHERE id_partido=$2 LIMIT 1) || ', ' || -- id_candidato
+    (SELECT id_candidato FROM candidatos WHERE id_partido=$2 AND id_eleccion=$1 LIMIT 1) || ', ' || -- id_candidato
     $2 || ', ' ||             -- id_partido
     $3 || ', ' ||             -- id_tipo_partido
     d.id_dpa  || ', ' ||      -- id_dpa
@@ -65,20 +65,25 @@ rm /tmp/$TABLA.tmp.sql
 
 # reseter
 
-# PULSO 4
-resultados_muni 10 4 1 1 "pulso" "2009-12-06"
-# MUSPA 3
-resultados_muni 10 3 1 1 "muspa" "2009-12-06"
 # MAS 25
 resultados_muni 10 25 1 1 "mas" "2009-12-06"
-# BSD 1
-resultados_muni 10 1 1 1 "bsd" "2009-12-06"
-# GENTE 2
-resultados_muni 10 2 1 1 "gente" "2009-12-06"
-# AS 18
-resultados_muni 10 18 1 1 "as" "2009-12-06"
+# PPB-CN 27
+resultados_muni 10 27 1 1 "ppb-cn" "2009-12-06"
 # UN 16
 resultados_muni 10 16 1 1 "un" "2009-12-06"
+# AS 18
+resultados_muni 10 18 1 1 "as" "2009-12-06"
+# MUSPA 3
+resultados_muni 10 3 1 1 "muspa" "2009-12-06"
+# GENTE 2
+resultados_muni 10 2 1 1 "gente" "2009-12-06"
+# PULSO 4
+resultados_muni 10 4 1 1 "pulso" "2009-12-06"
+# BSD 1
+resultados_muni 10 1 1 1 "bsd" "2009-12-06"
+
+
+
 
 
 # Eliminación de la tabla temporal $TABLA
