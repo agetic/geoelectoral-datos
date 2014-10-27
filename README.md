@@ -88,6 +88,12 @@ psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.9_hacia
 
 ## Ingreso de resultados
 
+Para los scripts se utiliza el paquete `poppler-utils` el cual es necesario instalar
+
+```
+sudo apt-get install poppler-utils
+```
+
 Para añadir los resultados plurinominales, lanzar
 
 ```
@@ -142,3 +148,5 @@ psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.13_haci
 
 > * También se incluyen en la migración los nombres de archivos migrados con anterioridad al archivo SQL `upgrade_0.13_hacia_0.14.sql`.
 > * La última fila de ésta tabla corresponde al último archivo SQL migrado.
+> * A partir de ahora es necesario adicionar al final de cada archivo SQL `INSERT INTO versiones(descripcion) VALUES
+('upgrade_X.X_hacia_X.X.sql')` con la versión correspondiente del upgrade.
