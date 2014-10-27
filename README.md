@@ -129,3 +129,16 @@ En fecha 13-05-2014 se definieron las circunscripciones para las elecciones de O
 ```
 psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.12_hacia_0.13.sql
 ```
+
+## Tabla de versiones
+
+Para hacer seguimiento a las versiones migradas se crea una tabla `versiones` con el nombre del archivo SQL migrado y la fecha.
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.13_hacia_0.14.sql
+```
+
+> _Nota:_
+
+> * También se incluyen en la migración los nombres de archivos migrados con anterioridad al archivo SQL `upgrade_0.13_hacia_0.14.sql`.
+> * La última fila de ésta tabla corresponde al último archivo SQL migrado.
