@@ -9,7 +9,7 @@ sql=/tmp/uni.sql
 function dl_sql_uni {
 rm $pdf
 rm $txt
-wget http://computo2014.oep.org.bo/nal/c${1}.PDF -O $pdf
+wget http://www.oep.org.bo/Computo2014/nal/c${1}.PDF -O $pdf
 /usr/bin/pdftotext -raw $pdf $txt
 
 num=$(tail -n 5 $txt | grep '[[:digit:]]\+ de [[:digit:]]\+');

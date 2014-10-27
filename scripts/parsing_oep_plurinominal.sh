@@ -9,7 +9,7 @@ sql=/tmp/pluri.sql
 function dl_sql {
 rm $pdf
 rm $txt
-wget http://computo2014.oep.org.bo/nal/p${1}.PDF -O $pdf
+wget http://www.oep.org.bo/Computo2014/nal/p${1}.PDF -O $pdf
 /usr/bin/pdftotext -raw $pdf $txt
 
 num=$(tail -n 5 $txt | grep '[[:digit:]]\+ de [[:digit:]]\+');
