@@ -150,3 +150,11 @@ psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.13_haci
 > * La última fila de ésta tabla corresponde al último archivo SQL migrado.
 > * A partir de ahora es necesario adicionar al final de cada archivo SQL `INSERT INTO versiones(descripcion) VALUES
 ('upgrade_X.X_hacia_X.X.sql')` con la versión correspondiente del upgrade.
+
+## Actualización de datos al 100% elecciones generales 2014
+
+Para el conteo oficial se debe ejecutar
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.14_hacia_0.15.sql
+```
