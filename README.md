@@ -158,3 +158,10 @@ Para el conteo oficial se debe ejecutar
 ```
 psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.14_hacia_0.15.sql
 ```
+## Actualización de datos para elecciones generales 2014 por provincias y municipios
+
+Para añadir los resultados por provincias y municipios del 2014 ejecutar
+
+```
+psql -d geoelectoral -h localhost -U geoelectoral -W < scripts/upgrade_0.15_hacia_0.16.sql
+```
